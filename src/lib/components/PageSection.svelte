@@ -32,7 +32,7 @@
 >
     <div
         class="flex-center relative z-10 flex-col gap-3 text-center {horizontal
-            ? 'w-full lg:w-[50%] lg:!items-start lg:pl-[10%] lg:text-left 2xl:pl-[15%]'
+            ? 'w-full lg:w-[50%] lg:items-start! lg:pl-[10%] lg:text-left 2xl:pl-[15%]'
             : ''}"
     >
         <p class="text-4xl font-bold lg:text-5xl">
@@ -43,7 +43,7 @@
     </div>
 
     {#if horizontal && wrapChildren}
-        <div class="relative h-fit w-full lg:h-full lg:w-auto lg:flex-grow">
+        <div class="relative h-fit w-full lg:h-full lg:w-auto lg:grow">
             {@render children?.()}
         </div>
     {:else}

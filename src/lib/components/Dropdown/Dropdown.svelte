@@ -96,7 +96,7 @@
 <div class={twMerge("dropdown relative", classes)} data-value={currentValue.value}>
     <button
         class="flex items-center justify-start gap-0.5 {!currentValue.text && currentValue.image
-            ? '!p-2'
+            ? 'p-2!'
             : ''}"
         data-input
         onclick={() => visible.update((visible: boolean) => !visible)}

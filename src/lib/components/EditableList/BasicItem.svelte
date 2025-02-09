@@ -48,7 +48,7 @@
             <p class="text-lg font-bold">#{index + 1}</p>
 
             <input
-                class="primary w-fit !bg-primary-300"
+                class="primary w-fit bg-primary-300!"
                 placeholder={namePlaceholder}
                 bind:value={currentNameValue}
             />
@@ -67,13 +67,13 @@
         </div>
     </div>
 
-    <div class="flex-center w-full flex-grow gap-6">
+    <div class="flex-center w-full grow gap-6">
         {#each data as item}
             {@html item}
         {/each}
 
         <textarea
-            class="primary h-full w-full resize-none !bg-primary-300"
+            class="primary h-full w-full resize-none bg-primary-300!"
             placeholder={descriptionPlaceholder}
             bind:value={currentDescriptionValue}
         ></textarea>

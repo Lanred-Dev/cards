@@ -1,158 +1,221 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
 
-@font-face {
-    font-family: "EireneSans";
-    src:
-        local("Eirene Sans Bold"),
-        local("EireneSans-Bold"),
-        url("/fonts/EireneSans/EireneSans-Bold.woff2") format("woff2"),
-        url("/fonts/EireneSans/EireneSans-Bold.woff") format("woff");
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/container-queries';
+@plugin '@tailwindcss/aspect-ratio';
+
+@theme {
+    --font-*: initial;
+    --font-EireneSans: EireneSans, sans-serif;
+
+    --background-color-primary-50: #e6e9ec;
+    --background-color-primary-100: #e5e8eb;
+    --background-color-primary-200: #dfe3e7;
+    --background-color-primary-300: #d9dee2;
+    --background-color-primary-400: #d4d9de;
+    --background-color-primary-500: #ced4d9;
+    --background-color-primary-600: #c8cfd5;
+    --background-color-primary-700: #c2c9d0;
+    --background-color-primary-800: #bdc4cc;
+    --background-color-primary-900: #b7bfc8;
+    --background-color-primary-950: #b4bdc5;
+    --background-color-primary: #e5e8eb;
+
+    --background-color-accent-primary: #5e8ab4;
+    --background-color-accent-light: #a4c8e1;
+
+    --background-color-button-primary: #5e8ab4;
+    --background-color-button-secondary: #a4c8e1;
+
+    --background-color-divider: #e7e7e7;
+
+    --text-color-primary-50: #737373;
+    --text-color-primary-100: #6c6c6c;
+    --text-color-primary-200: #606060;
+    --text-color-primary-300: #535353;
+    --text-color-primary-400: #464646;
+    --text-color-primary-500: #393939;
+    --text-color-primary-600: #2d2d2d;
+    --text-color-primary-700: #202020;
+    --text-color-primary-800: #131313;
+    --text-color-primary-900: #060606;
+    --text-color-primary-950: #000000;
+    --text-color-primary: #000000;
+
+    --border-color-primary-50: #cfcfcf;
+    --border-color-primary-100: #cbcbcb;
+    --border-color-primary-200: #c3c3c3;
+    --border-color-primary-300: #bcbcbc;
+    --border-color-primary-400: #b4b4b4;
+    --border-color-primary-500: #afafaf;
+    --border-color-primary-600: #aaaaaa;
+    --border-color-primary-700: #a5a5a5;
+    --border-color-primary-800: #a0a0a0;
+    --border-color-primary-900: #9b9b9b;
+    --border-color-primary-950: #989898;
+    --border-color-primary: #b4b4b4;
+
+    --ring-color-primary: #5e8ab4;
+
+    --radius-primary: 15px;
+    --radius-button: 10px;
 }
 
-@font-face {
-    font-family: "EireneSans";
-    src:
-        local("Eirene Sans Italic"),
-        local("EireneSans-Italic"),
-        url("/fonts/EireneSans/EireneSans-Italic.woff2") format("woff2"),
-        url("/fonts/EireneSans/EireneSans-Italic.woff") format("woff");
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
+@utility cover-screen {
+    @apply h-screen w-full;
 }
 
-@font-face {
-    font-family: "EireneSans";
-    src:
-        local("Eirene Sans Bold Italic"),
-        local("EireneSans-BoldItalic"),
-        url("/fonts/EireneSans/EireneSans-BoldItalic.woff2") format("woff2"),
-        url("/fonts/EireneSans/EireneSans-BoldItalic.woff") format("woff");
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
+@utility x-center {
+    @apply absolute;
+    @apply left-1/2 -translate-x-1/2;
 }
 
-@font-face {
-    font-family: "EireneSans";
-    src:
-        local("Eirene Sans Regular"),
-        local("EireneSans-Regular"),
-        url("/fonts/EireneSans/EireneSans-Regular.woff2") format("woff2"),
-        url("/fonts/EireneSans/EireneSans-Regular.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+@utility y-center {
+    @apply absolute;
+    @apply top-1/2 -translate-y-1/2;
+}
+
+@utility flex-center {
+    @apply flex items-center justify-center;
+}
+
+@utility text-light {
+    @apply text-primary-600;
+}
+
+@utility text-dark {
+    @apply text-primary-800;
+}
+
+@utility primary {
+    &button,
+    &a {
+        @apply px-6 py-3 font-semibold;
+    }
+
+    &button:has(> img),
+    &a:has(> img) {
+        @apply flex-center gap-1.5;
+    }
+
+    &button img,
+    &a img {
+        @apply aspect-1 h-7 select-none;
+    }
+
+    &button,
+    &a,
+    &input,
+    &textarea,
+    &select {
+        @apply border-primary border;
+    }
+
+    &button,
+    &a {
+        @apply rounded-button bg-button-primary text-primary;
+    }
+
+    &input,
+    &textarea,
+    &select,
+    &button[data-input] {
+        @apply rounded-button bg-primary-500 text-primary placeholder:text-primary-200 focus:ring-primary px-3 py-2 focus:border-transparent focus:ring-1 focus:outline-hidden;
+    }
+
+    div {
+        @apply rounded-primary bg-primary-700 overflow-hidden;
+    }
+}
+
+@utility secondary {
+    &button,
+    &a {
+        @apply px-6 py-3 font-semibold;
+    }
+
+    &button:has(> img),
+    &a:has(> img) {
+        @apply flex-center gap-1.5;
+    }
+
+    &button img,
+    &a img {
+        @apply aspect-1 h-7 select-none;
+    }
+}
+
+@utility divider-x {
+    @apply bg-divider;
+    height: 2px;
+}
+
+@utility divider-y {
+    @apply bg-divider;
+    width: 2px;
+}
+
+@utility bt-cover {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: 0% 15%;
+    mask-position: 0% 15%;
+}
+
+@layer utilities {
+    @font-face {
+        font-family: "EireneSans";
+        src:
+            local("Eirene Sans Bold"),
+            local("EireneSans-Bold"),
+            url("/fonts/EireneSans/EireneSans-Bold.woff2") format("woff2"),
+            url("/fonts/EireneSans/EireneSans-Bold.woff") format("woff");
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "EireneSans";
+        src:
+            local("Eirene Sans Italic"),
+            local("EireneSans-Italic"),
+            url("/fonts/EireneSans/EireneSans-Italic.woff2") format("woff2"),
+            url("/fonts/EireneSans/EireneSans-Italic.woff") format("woff");
+        font-weight: normal;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "EireneSans";
+        src:
+            local("Eirene Sans Bold Italic"),
+            local("EireneSans-BoldItalic"),
+            url("/fonts/EireneSans/EireneSans-BoldItalic.woff2") format("woff2"),
+            url("/fonts/EireneSans/EireneSans-BoldItalic.woff") format("woff");
+        font-weight: bold;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: "EireneSans";
+        src:
+            local("Eirene Sans Regular"),
+            local("EireneSans-Regular"),
+            url("/fonts/EireneSans/EireneSans-Regular.woff2") format("woff2"),
+            url("/fonts/EireneSans/EireneSans-Regular.woff") format("woff");
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
 }
 
 @layer base {
     body {
         @apply bg-primary font-EireneSans text-primary;
-    }
-}
-
-@layer utilities {
-    .cover-screen {
-        @apply h-screen w-full;
-    }
-
-    .x-center,
-    .y-center {
-        @apply absolute;
-    }
-
-    .x-center {
-        @apply left-1/2 -translate-x-1/2;
-    }
-
-    .y-center {
-        @apply top-1/2 -translate-y-1/2;
-    }
-
-    .flex-center {
-        @apply flex items-center justify-center;
-    }
-
-    .text-light {
-        @apply text-primary-600;
-    }
-
-    .text-dark {
-        @apply text-primary-800;
-    }
-}
-
-@layer components {
-    button.primary,
-    a.primary,
-    button.secondary,
-    a.secondary {
-        @apply px-6 py-3 font-semibold;
-    }
-
-    button.primary:has(> img),
-    a.primary:has(> img),
-    button.secondary:has(> img),
-    a.secondary:has(> img) {
-        @apply flex-center gap-1.5;
-    }
-
-    button.primary img,
-    a.primary img,
-    button.secondary img,
-    a.secondary img {
-        @apply aspect-1 h-7 select-none;
-    }
-
-    button.primary,
-    a.primary,
-    input.primary,
-    textarea.primary,
-    select.primary,
-    button[data-input] {
-        @apply border border-primary;
-    }
-
-    button.primary,
-    a.primary {
-        @apply rounded-button bg-button-primary text-primary;
-    }
-
-    input.primary,
-    textarea.primary,
-    select.primary,
-    button[data-input] {
-        @apply rounded-button bg-primary-500 px-3 py-2 text-primary placeholder:text-primary-200 focus:border-transparent focus:outline-none focus:ring-1 focus:ring-primary;
-    }
-
-    div.primary {
-        @apply overflow-hidden rounded-primary bg-primary-700;
-    }
-
-    .divider-x,
-    .divider-y {
-        @apply bg-divider;
-    }
-
-    .divider-x {
-        height: 2px;
-    }
-
-    .divider-y {
-        width: 2px;
-    }
-
-    .bt-cover {
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-        -webkit-mask-repeat: no-repeat;
-        mask-repeat: no-repeat;
-        -webkit-mask-position: 0% 15%;
-        mask-position: 0% 15%;
     }
 }

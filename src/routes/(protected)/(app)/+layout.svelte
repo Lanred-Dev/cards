@@ -12,7 +12,7 @@
 <div class="flex h-screen w-full flex-col">
     <Header user={data.session.user} {sidebarVisible} />
 
-    <div class="flex w-full flex-grow overflow-hidden">
+    <div class="flex w-full grow overflow-hidden">
         <Sidebar visible={sidebarVisible} />
 
         <main

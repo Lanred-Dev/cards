@@ -19,7 +19,7 @@
         <img
             src={data.ownerWithData?.image}
             alt={data.ownerWithData?.name}
-            class="aspect-1 h-7 flex-shrink-0"
+            class="aspect-1 h-7 shrink-0"
         />
         <p></p>
     </div>
